@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Uni Medic · Funil Comercial · Guia do CRM Verdesk</title>
+<meta name="description" content="Guia de uso do funil comercial no CRM Verdesk para a Uni Medic, aplicando as diretrizes visuais ClintIA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#05D2FF;
+    --dodger:#0578DC;
+    --celtic:#055AAA;
+    --yale:#053C73;
+    --oxford:#051E32;
+    --white:#FFFFFF;
+    --ink:#2b2b2b;
+    --muted:#6b7683;
+    --page-w: 297mm;
+    --page-h: 210mm;
+    --pad: 22mm;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#e5e7eb;font-family:'Red Hat Display',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+
+  .page{
+    width:var(--page-w);
+    height:var(--page-h);
+    background:#fff;
+    margin:16px auto;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    page-break-after:always;
+    break-after:page;
+  }
+  .page:last-child{page-break-after:auto;break-after:auto}
+
+  /* Top stripe used on content pages */
+  .stripe{
+    position:absolute;top:0;left:0;right:0;height:8mm;display:flex;
+  }
+  .stripe .s{flex:0 0 auto;height:100%}
+  .stripe .s1{flex:1 1 40%;background:var(--oxford)}
+  .stripe .s2{flex:0 0 22%;background:var(--yale)}
+  .stripe .s3{flex:0 0 18%;background:var(--celtic)}
+  .stripe .s4{flex:0 0 12%;background:var(--dodger)}
+  .stripe .s5{flex:0 0 8%;background:var(--sky)}
+
+  .content{
+    position:absolute;
+    top:16mm;left:var(--pad);right:var(--pad);bottom:12mm;
+  }
+  .kicker{
+    font-size:11pt;color:var(--yale);font-weight:700;letter-spacing:.06em;margin-bottom:2mm;
+    text-transform:uppercase;
+  }
+  h1.title{
+    font-family:'Red Hat Display',sans-serif;
+    font-weight:900;
+    color:var(--dodger);
+    font-size:36pt;
+    letter-spacing:-.01em;
+    line-height:1;
+    margin-bottom:10mm;
+  }
+  h1.title.small{font-size:28pt}
+
+  p, li{font-size:11.5pt;line-height:1.55;color:#1f2937}
+  p + p{margin-top:3.2mm}
+  strong{color:var(--oxford)}
+  ul{margin:3mm 0 3mm 7mm}
+  ul li{margin:.8mm 0}
+
+  .footer{
+    position:absolute;bottom:6mm;left:var(--pad);right:var(--pad);
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:8pt;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;
+  }
+  .footer .brand{display:flex;align-items:center;gap:2mm}
+  .footer .brand .mark{width:5mm;height:5mm;background:var(--dodger);border-radius:1mm}
+  .footer .brand b{color:var(--oxford)}
+
+  /* ---------- COVER ---------- */
+  .cover{background:var(--oxford);color:#fff;display:grid;grid-template-columns:1fr 1fr}
+  .cover .bars{
+    position:relative;background:var(--oxford);
+    display:grid;grid-template-columns:repeat(5, 1fr);
+  }
+  .cover .bars .b{height:100%}
+  .cover .bars .b1{background:var(--yale)}
+  .cover .bars .b2{background:var(--celtic)}
+  .cover .bars .b3{background:var(--dodger)}
+  .cover .bars .b4{background:var(--sky)}
+  .cover .bars .b5{background:var(--oxford)}
+
+  .cover-left{padding:20mm;display:flex;flex-direction:column;justify-content:space-between;position:relative;z-index:2}
+  .cover-logo{display:flex;align-items:center;gap:4mm}
+  .cover-logo .icon{width:22mm;height:22mm;position:relative}
+  .cover-logo .icon svg{width:100%;height:100%}
+  .cover-logo .name{font-weight:900;font-size:28pt;color:#fff;letter-spacing:.02em}
+  .cover-logo .name .ia{color:var(--sky)}
+  .cover-client{font-size:10pt;letter-spacing:.24em;color:var(--sky);text-transform:uppercase;margin-bottom:3mm;font-weight:700}
+  .cover-title{
+    font-family:'Red Hat Display',sans-serif;font-weight:900;font-size:64pt;line-height:.95;color:#fff;
+    letter-spacing:-.01em;
+  }
+  .cover-sub{margin-top:6mm;font-size:14pt;color:#cbd5e1;font-weight:500;max-width:120mm}
+  .cover-meta{font-size:9pt;color:#94a3b8;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+
+  /* ---------- SECTION DIVIDER ---------- */
+  .divider{background:var(--oxford);color:#fff;padding:0;position:relative;overflow:hidden}
+  .divider .grid{
+    position:absolute;inset:0;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+  }
+  .divider .grid > div{background:var(--oxford)}
+  .divider .grid .c1{background:var(--dodger);grid-column:1;grid-row:1}
+  .divider .grid .c2{background:var(--yale);grid-column:2;grid-row:2}
+  .divider .grid .c3{background:var(--celtic);grid-column:3;grid-row:2}
+  .divider .grid .c4{background:var(--dodger);grid-column:4;grid-row:2}
+  .divider .grid .c5{background:var(--sky);grid-column:5 / span 1;grid-row:2;width:35%}
+  .divider .grid .c6{background:var(--dodger);grid-column:1;grid-row:3 / span 2}
+  .divider .num-box{
+    position:absolute;left:8%;top:22%;width:15%;height:38%;
+    background:var(--oxford);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:120pt;z-index:2;line-height:1;border:0;
+  }
+  .divider .title-box{
+    position:absolute;left:50%;top:26%;color:#fff;font-size:36pt;line-height:1.05;
+    text-transform:uppercase;letter-spacing:.01em;font-weight:400;z-index:2;max-width:38%;
+  }
+
+  /* ---------- CALLOUT / BOXES ---------- */
+  .box{border-left:4px solid var(--dodger);background:#f1f7ff;padding:5mm 6mm;margin:4mm 0;border-radius:0 2mm 2mm 0}
+  .box.warn{border-left-color:var(--celtic);background:#eef4fb}
+  .box.strong{border-left-color:var(--yale);background:#eaf2fb}
+  .box h4{color:var(--oxford);font-size:11pt;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2mm;font-weight:800}
+
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:8mm}
+  .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6mm}
+
+  h2.sub{color:var(--oxford);font-size:14pt;font-weight:800;margin:5mm 0 2mm;text-transform:uppercase;letter-spacing:.02em}
+  h3.sub{color:var(--celtic);font-size:12pt;font-weight:700;margin:4mm 0 2mm;text-transform:uppercase;letter-spacing:.04em}
+
+  .column-card{
+    background:linear-gradient(180deg,#fff 0%,#f4f8fd 100%);
+    border:1px solid #dbe6f2;border-radius:3mm;padding:6mm;position:relative;overflow:hidden;
+    height:100%;
+  }
+  .column-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3mm;background:var(--dodger);
+  }
+  .column-card .num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:12mm;height:12mm;background:var(--oxford);color:#fff;border-radius:50%;
+    font-weight:900;font-size:16pt;margin-bottom:3mm;
+  }
+  .column-card h3{color:var(--oxford);font-size:14pt;font-weight:900;letter-spacing:.02em;margin-bottom:2mm;text-transform:uppercase}
+  .column-card p{font-size:10pt;line-height:1.45}
+
+  /* Table */
+  table.resume{
+    width:100%;border-collapse:separate;border-spacing:0;margin-top:5mm;
+    font-size:11pt;overflow:hidden;border-radius:3mm;border:1px solid #dbe6f2;
+  }
+  table.resume th, table.resume td{padding:3.5mm 5mm;text-align:left;vertical-align:middle}
+  table.resume thead th{background:var(--oxford);color:#fff;font-size:10pt;text-transform:uppercase;letter-spacing:.06em;font-weight:800}
+  table.resume tbody tr:nth-child(even) td{background:#f4f8fd}
+  table.resume tbody td.action{color:var(--dodger);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:10pt;white-space:nowrap}
+
+  /* Metric block for "Como o quadro está hoje" */
+  .metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:3mm;margin:5mm 0}
+  .metric{background:#fff;border:1px solid #dbe6f2;border-radius:2mm;padding:4mm;text-align:center}
+  .metric .n{font-weight:900;font-size:22pt;color:var(--dodger);line-height:1}
+  .metric.zero .n{color:var(--muted)}
+  .metric.hi .n{color:var(--celtic)}
+  .metric .lbl{font-size:8pt;text-transform:uppercase;letter-spacing:.06em;color:var(--oxford);font-weight:700;margin-top:2mm}
+
+  /* Practice list */
+  .practice{display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:4mm}
+  .practice .p{background:#f4f8fd;border-left:4px solid var(--dodger);padding:4mm 5mm;border-radius:0 2mm 2mm 0}
+  .practice .p b{color:var(--oxford);text-transform:uppercase;font-size:9.5pt;letter-spacing:.06em}
+  .practice .p .arrow{color:var(--dodger);font-weight:800;margin:0 2mm}
+
+  /* Back cover */
+  .backcover{background:var(--oxford);color:#fff;display:flex;align-items:center;justify-content:center}
+  .backcover .card{max-width:150mm;text-align:center}
+  .backcover .rule{height:1px;background:var(--sky);width:60mm;margin:6mm auto}
+  .backcover h2{font-weight:900;font-size:20pt;margin:2mm 0;letter-spacing:.02em}
+  .backcover p{color:#cbd5e1;font-size:11pt;line-height:1.6}
+  .backcover .tag{font-size:9pt;letter-spacing:.24em;text-transform:uppercase;color:var(--sky);font-weight:700}
+
+  /* Print */
+  @page{size:A4 landscape;margin:0}
+  @media print{
+    html,body{background:#fff}
+    .page{margin:0;box-shadow:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================== CAPA ================== -->
+<section class="page cover">
+  <div class="cover-left">
+    <div class="cover-logo">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12 h30 v10 h-20 v20 h-10 z" fill="#05D2FF"/>
+          <path d="M58 12 h30 v30 h-10 v-20 h-20 z" fill="#FFFFFF"/>
+          <path d="M12 58 h10 v20 h20 v10 h-30 z" fill="#FFFFFF"/>
+          <path d="M58 58 h30 v30 h-10 v-20 h-20 z" fill="#0578DC"/>
+        </svg>
+      </div>
+      <div class="name">CLINT<span class="ia">IA</span></div>
+    </div>
+
+    <div>
+      <div class="cover-client">Cliente · Uni Medic</div>
+      <div class="cover-title">FUNIL<br>COMERCIAL</div>
+      <div class="cover-sub">Guia de uso do CRM Verdesk — como o card acompanha a jornada do paciente, do primeiro contato ao atendimento.</div>
+    </div>
+
+    <div class="cover-meta">Versão 1.0 · Setembro de 2026</div>
+  </div>
+
+  <div class="bars">
+    <div class="b b1"></div>
+    <div class="b b2"></div>
+    <div class="b b3"></div>
+    <div class="b b4"></div>
+    <div class="b b5"></div>
+  </div>
+</section>
+
+<!-- ================== SUMÁRIO ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">Documento interno</div>
+    <h1 class="title">SUMÁRIO</h1>
+
+    <div class="row2" style="margin-top:8mm">
+      <div>
+        <h2 class="sub">1. O Funil Comercial</h2>
+        <ul>
+          <li>Por que manter o funil atualizado</li>
+          <li>Como o quadro está hoje</li>
+        </ul>
+
+        <h2 class="sub">2. As seis colunas</h2>
+        <ul>
+          <li>Novas Oportunidades</li>
+          <li>Contato</li>
+          <li>Agendado</li>
+          <li>Confirmado</li>
+          <li>Compareceu</li>
+          <li>Não Compareceu</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="sub">3. O que o sistema faz — e o que não faz</h2>
+        <ul>
+          <li>Automação da agenda</li>
+          <li>Atualização manual do funil</li>
+        </ul>
+
+        <h2 class="sub">4. Rotina e finalização</h2>
+        <ul>
+          <li>Um hábito importante</li>
+          <li>Ao finalizar o card: tipo e motivo</li>
+          <li>Por que registrar o motivo</li>
+        </ul>
+
+        <h2 class="sub">5. Resumo e regra principal</h2>
+        <ul>
+          <li>Resumo de mesa</li>
+          <li>A regra mais importante</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>02</div>
+  </div>
+</section>
+
+<!-- ================== SEÇÃO 1 · DIVISOR ================== -->
+<section class="page divider">
+  <div class="grid">
+    <div class="c1"></div><div class="c2"></div><div class="c3"></div><div class="c4"></div><div class="c5"></div><div class="c6"></div>
+  </div>
+  <div class="num-box">1</div>
+  <div class="title-box">O FUNIL<br>COMERCIAL</div>
+</section>
+
+<!-- ================== 1.1 O Funil Comercial ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">1. O Funil Comercial</div>
+    <h1 class="title">O FUNIL COMERCIAL</h1>
+
+    <p>O funil comercial ajuda a acompanhar cada pessoa desde o primeiro contato pelo WhatsApp até o atendimento na clínica.</p>
+    <p>Cada card representa uma pessoa que entrou em contato com a clínica.</p>
+    <p>A coluna em que o card está mostra em que etapa da jornada essa pessoa está naquele momento.</p>
+    <p>O card não muda de coluna automaticamente em todas as etapas. Por isso, é importante manter o funil atualizado conforme o atendimento avança.</p>
+
+    <div class="box">
+      <h4>Por que manter o funil atualizado?</h4>
+      <p>Com os cards nas etapas corretas, a equipe consegue:</p>
+      <ul>
+        <li>saber quais pessoas ainda precisam de atendimento;</li>
+        <li>identificar quem já recebeu uma proposta ou tem uma consulta marcada;</li>
+        <li>acompanhar quem confirmou ou não confirmou a consulta;</li>
+        <li>saber quantas pessoas realmente compareceram;</li>
+        <li>identificar onde os atendimentos estão sendo perdidos;</li>
+        <li>entender os principais motivos de perda;</li>
+        <li>acompanhar os resultados do atendimento comercial.</li>
+      </ul>
+      <p style="margin-top:3mm"><strong>A regra é simples:</strong> quando a situação do paciente mudar, o card deve acompanhar essa mudança.</p>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>03</div>
+  </div>
+</section>
+
+<!-- ================== 1.2 Como o quadro está hoje ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">1. O Funil Comercial</div>
+    <h1 class="title">COMO O QUADRO ESTÁ HOJE</h1>
+
+    <p>Uma consulta ao sistema em 21/09/2026 mostra 410 cards, com registros entre 30/07 e 18/09, distribuídos assim:</p>
+
+    <div class="metrics">
+      <div class="metric hi"><div class="n">410</div><div class="lbl">Novas Oportunidades</div></div>
+      <div class="metric zero"><div class="n">0</div><div class="lbl">Contato</div></div>
+      <div class="metric zero"><div class="n">0</div><div class="lbl">Agendado</div></div>
+      <div class="metric zero"><div class="n">0</div><div class="lbl">Confirmado</div></div>
+      <div class="metric zero"><div class="n">0</div><div class="lbl">Compareceu</div></div>
+      <div class="metric zero"><div class="n">0</div><div class="lbl">Não Compareceu</div></div>
+    </div>
+
+    <p>Isso significa que, no CRM, os 410 cards continuam registrados na primeira etapa do funil e nenhum deles foi movimentado ou finalizado dentro dessas etapas.</p>
+    <p>Isso não permite concluir que esses pacientes não foram atendidos.</p>
+    <p>O atendimento pode ter acontecido normalmente pelo WhatsApp, enquanto o card permaneceu na primeira coluna.</p>
+    <p>O ponto é outro: quando o card não é movimentado, o CRM deixa de refletir o estágio real daquele atendimento.</p>
+
+    <div class="box strong">
+      <p>Agora que as etapas do funil estão disponíveis, o objetivo é fazer com que o card acompanhe a jornada do paciente.</p>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>04</div>
+  </div>
+</section>
+
+<!-- ================== SEÇÃO 2 · DIVISOR ================== -->
+<section class="page divider">
+  <div class="grid">
+    <div class="c1"></div><div class="c2"></div><div class="c3"></div><div class="c4"></div><div class="c5"></div><div class="c6"></div>
+  </div>
+  <div class="num-box">2</div>
+  <div class="title-box">AS SEIS<br>COLUNAS</div>
+</section>
+
+<!-- ================== 2.0 Visão geral das colunas ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">2. As seis colunas</div>
+    <h1 class="title small">AS SEIS COLUNAS DO FUNIL</h1>
+
+    <div class="row3" style="margin-top:6mm">
+      <div class="column-card">
+        <div class="num">1</div>
+        <h3>Novas Oportunidades</h3>
+        <p>Contato entrou no CRM e ainda não foi registrado na etapa seguinte do funil.</p>
+      </div>
+      <div class="column-card">
+        <div class="num">2</div>
+        <h3>Contato</h3>
+        <p>Atendimento em andamento, ainda sem consulta marcada.</p>
+      </div>
+      <div class="column-card">
+        <div class="num">3</div>
+        <h3>Agendado</h3>
+        <p>Consulta marcada, com dia, horário e profissional definidos.</p>
+      </div>
+    </div>
+
+    <div class="row3" style="margin-top:5mm">
+      <div class="column-card">
+        <div class="num">4</div>
+        <h3>Confirmado</h3>
+        <p>O paciente confirmou que irá à consulta.</p>
+      </div>
+      <div class="column-card">
+        <div class="num">5</div>
+        <h3>Compareceu</h3>
+        <p>O paciente compareceu à consulta e foi atendido.</p>
+      </div>
+      <div class="column-card">
+        <div class="num">6</div>
+        <h3>Não Compareceu</h3>
+        <p>Tinha consulta marcada, mas não compareceu.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>05</div>
+  </div>
+</section>
+
+<!-- ================== 2.1 NOVAS OPORTUNIDADES ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">2. As seis colunas · 1</div>
+    <h1 class="title">1. NOVAS OPORTUNIDADES</h1>
+
+    <p>Um card nesta coluna significa:</p>
+    <div class="box">
+      <p>O contato entrou no CRM e ainda não foi registrado na etapa seguinte do funil.</p>
+    </div>
+
+    <h2 class="sub">Como entra</h2>
+    <p>Automaticamente.</p>
+    <p>O sistema cria o card quando chega uma mensagem de um número novo. Não é necessário criar o card manualmente.</p>
+
+    <h2 class="sub">Quando mover</h2>
+    <p>Depois de responder à primeira mensagem da pessoa, mova o card para:</p>
+    <div class="box strong"><p><strong>CONTATO</strong></p></div>
+
+    <h2 class="sub">Por que fazer isso?</h2>
+    <p>A primeira coluna funciona como ponto de entrada dos novos contatos.</p>
+    <p>Mantê-la atualizada permite identificar rapidamente quais contatos acabaram de chegar e quais já avançaram para o atendimento.</p>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>06</div>
+  </div>
+</section>
+
+<!-- ================== 2.2 CONTATO ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">2. As seis colunas · 2</div>
+    <h1 class="title">2. CONTATO</h1>
+
+    <p>Um card nesta coluna significa:</p>
+    <div class="box">
+      <p>A pessoa já entrou em contato com a clínica e o atendimento está em andamento, mas ainda não existe uma consulta marcada.</p>
+    </div>
+
+    <h2 class="sub">Quando mover para cá</h2>
+    <p>Depois de responder à primeira mensagem da pessoa.</p>
+
+    <h2 class="sub">Quando mover para AGENDADO</h2>
+    <p>Assim que a consulta estiver marcada, com:</p>
+    <ul>
+      <li>dia;</li>
+      <li>horário;</li>
+      <li>profissional definidos.</li>
+    </ul>
+
+    <h2 class="sub">Se a pessoa desistir ou não responder mais</h2>
+    <p>Finalize a oportunidade como:</p>
+    <div class="box warn"><p><strong>SEM SUCESSO</strong></p></div>
+
+    <h2 class="sub">Por que acompanhar esta etapa?</h2>
+    <p>Essa coluna mostra as conversas que ainda estão em andamento e que podem evoluir para um agendamento.</p>
+    <p>Por isso, ela deve ser revisada regularmente.</p>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>07</div>
+  </div>
+</section>
+
+<!-- ================== 2.3 AGENDADO ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">2. As seis colunas · 3</div>
+    <h1 class="title">3. AGENDADO</h1>
+
+    <p>Um card nesta coluna significa:</p>
+    <div class="box">
+      <p>Existe uma consulta marcada, com dia, horário e profissional definidos.</p>
+    </div>
+
+    <div class="row2">
+      <div>
+        <h2 class="sub">Quando mover para cá</h2>
+        <p>Assim que o agendamento for registrado na agenda.</p>
+        <p>Registrou a consulta na agenda? Mova o card para AGENDADO no mesmo momento.</p>
+
+        <h2 class="sub">Quando mover para CONFIRMADO</h2>
+        <p>Quando o paciente responder confirmando que irá à consulta.</p>
+      </div>
+      <div>
+        <h2 class="sub">Se o paciente remarcar</h2>
+        <p>O card volta para:</p>
+        <div class="box"><p><strong>CONTATO</strong></p></div>
+
+        <h2 class="sub">Se o paciente cancelar</h2>
+        <p>Finalize a oportunidade.</p>
+      </div>
+    </div>
+
+    <div class="box warn">
+      <h4>Atenção</h4>
+      <p>A agenda e o funil são sistemas diferentes.</p>
+      <p>Marcar uma consulta na agenda não movimenta automaticamente o card no funil.</p>
+      <p>Por isso, o agendamento precisa ser registrado nos dois lugares:</p>
+      <p><strong>Agenda</strong> → marcação da consulta<br>
+      <strong>CRM</strong> → movimentação do card para AGENDADO</p>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>08</div>
+  </div>
+</section>
+
+<!-- ================== 2.4 CONFIRMADO ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">2. As seis colunas · 4</div>
+    <h1 class="title">4. CONFIRMADO</h1>
+
+    <p>Um card nesta coluna significa:</p>
+    <div class="box">
+      <p>O paciente confirmou que irá à consulta.</p>
+    </div>
+
+    <h2 class="sub">Quando mover para cá</h2>
+    <p>Quando chegar a confirmação do paciente.</p>
+
+    <h2 class="sub">O que acontece depois</h2>
+    <p>Após o horário da consulta, o card deve seguir para:</p>
+    <ul>
+      <li><strong>COMPARECEU</strong>, se o paciente foi atendido;</li>
+      <li><strong>NÃO COMPARECEU</strong>, se o paciente não compareceu.</li>
+    </ul>
+
+    <h2 class="sub">Por que essa etapa é importante?</h2>
+    <p>Separar AGENDADO de CONFIRMADO permite identificar quais consultas ainda precisam de confirmação.</p>
+    <p>Por exemplo:</p>
+    <div class="box strong">
+      <p>Agendado + sem confirmação na véspera → precisa de acompanhamento.</p>
+    </div>
+    <p>Assim, o funil ajuda a equipe a agir antes que a consulta aconteça.</p>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>09</div>
+  </div>
+</section>
+
+<!-- ================== 2.5 COMPARECEU ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">2. As seis colunas · 5</div>
+    <h1 class="title">5. COMPARECEU</h1>
+
+    <p>Um card nesta coluna significa:</p>
+    <div class="box">
+      <p>O paciente compareceu à consulta e foi atendido.</p>
+    </div>
+
+    <h2 class="sub">Quando mover para cá</h2>
+    <p>Após a realização do atendimento.</p>
+    <p>Depois disso, finalize a oportunidade como:</p>
+    <div class="box strong">
+      <p><strong>SUCESSO</strong></p>
+      <p style="margin-top:2mm">e informe o motivo correspondente.</p>
+    </div>
+
+    <h2 class="sub">Por que registrar?</h2>
+    <p>Essa etapa permite acompanhar quantos contatos que chegaram pelo WhatsApp realmente chegaram à clínica.</p>
+    <p>Assim, o funil deixa de mostrar apenas conversas e passa a mostrar o resultado da jornada.</p>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>10</div>
+  </div>
+</section>
+
+<!-- ================== 2.6 NÃO COMPARECEU ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">2. As seis colunas · 6</div>
+    <h1 class="title">6. NÃO COMPARECEU</h1>
+
+    <p>Um card nesta coluna significa:</p>
+    <div class="box">
+      <p>O paciente tinha uma consulta marcada, mas não compareceu.</p>
+    </div>
+
+    <h2 class="sub">Quando mover para cá</h2>
+    <p>Depois que passar o horário da consulta e for confirmado que o paciente não compareceu.</p>
+    <p>Depois disso, finalize como:</p>
+    <div class="box warn">
+      <p><strong>SEM SUCESSO</strong></p>
+    </div>
+
+    <h2 class="sub">Por que registrar?</h2>
+    <p>Essa informação permite identificar os pacientes que não compareceram e entender quantas oportunidades foram perdidas nessa etapa.</p>
+    <p>Também ajuda a equipe a identificar quem pode precisar de um novo contato.</p>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>11</div>
+  </div>
+</section>
+
+<!-- ================== SEÇÃO 3 · DIVISOR ================== -->
+<section class="page divider">
+  <div class="grid">
+    <div class="c1"></div><div class="c2"></div><div class="c3"></div><div class="c4"></div><div class="c5"></div><div class="c6"></div>
+  </div>
+  <div class="num-box">3</div>
+  <div class="title-box">O QUE O SISTEMA<br>FAZ — E O QUE<br>NÃO FAZ</div>
+</section>
+
+<!-- ================== 3.1 Sistema faz / não faz ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">3. O que o sistema faz — e o que não faz</div>
+    <h1 class="title small">O QUE O SISTEMA FAZ — E O QUE NÃO FAZ</h1>
+
+    <p>É importante separar duas coisas:</p>
+    <div class="box strong">
+      <p>A automação pode cuidar da agenda sem movimentar automaticamente o funil.</p>
+    </div>
+
+    <div class="row2" style="margin-top:5mm">
+      <div>
+        <h2 class="sub">A IA pode:</h2>
+        <ul>
+          <li>consultar horários disponíveis;</li>
+          <li>marcar consultas;</li>
+          <li>remarcar consultas;</li>
+          <li>cancelar consultas pelo WhatsApp.</li>
+        </ul>
+        <p style="margin-top:3mm">Mas isso não significa que o card será movimentado automaticamente no funil.</p>
+      </div>
+      <div>
+        <h2 class="sub">Por exemplo:</h2>
+        <div class="box">
+          <p>O paciente marcou uma consulta pelo WhatsApp.</p>
+        </div>
+        <p>A consulta pode aparecer corretamente na agenda, enquanto o card continua em NOVAS OPORTUNIDADES.</p>
+        <p>Nesse caso, as duas informações existem, mas estão em lugares diferentes.</p>
+      </div>
+    </div>
+
+    <div class="box warn" style="margin-top:5mm">
+      <p>Por isso:</p>
+      <p><strong>Marcou a consulta</strong> → registre na agenda e mova o card para AGENDADO.</p>
+      <p>O mesmo vale para as demais etapas.</p>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>12</div>
+  </div>
+</section>
+
+<!-- ================== SEÇÃO 4 · DIVISOR ================== -->
+<section class="page divider">
+  <div class="grid">
+    <div class="c1"></div><div class="c2"></div><div class="c3"></div><div class="c4"></div><div class="c5"></div><div class="c6"></div>
+  </div>
+  <div class="num-box">4</div>
+  <div class="title-box">ROTINA E<br>FINALIZAÇÃO</div>
+</section>
+
+<!-- ================== 4.1 Um hábito importante ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">4. Rotina e finalização</div>
+    <h1 class="title">UM HÁBITO IMPORTANTE</h1>
+
+    <p>Sempre que uma etapa acontecer, aproveite o mesmo momento para atualizar o card.</p>
+
+    <h2 class="sub">Na prática:</h2>
+
+    <div class="practice">
+      <div class="p"><b>Respondeu a primeira mensagem</b><br><span class="arrow">→</span> CONTATO</div>
+      <div class="p"><b>Marcou a consulta</b><br><span class="arrow">→</span> AGENDADO</div>
+      <div class="p"><b>Paciente confirmou</b><br><span class="arrow">→</span> CONFIRMADO</div>
+      <div class="p"><b>Paciente foi atendido</b><br><span class="arrow">→</span> COMPARECEU → finalizar</div>
+      <div class="p"><b>Paciente não compareceu</b><br><span class="arrow">→</span> NÃO COMPARECEU → finalizar</div>
+      <div class="p"><b>Paciente desistiu ou deixou de responder</b><br><span class="arrow">→</span> finalizar como SEM SUCESSO</div>
+    </div>
+
+    <div class="box strong" style="margin-top:6mm">
+      <p>Isso evita depender da memória depois e mantém o funil próximo da realidade do atendimento.</p>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>13</div>
+  </div>
+</section>
+
+<!-- ================== 4.2 Finalizar o card ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">4. Rotina e finalização</div>
+    <h1 class="title small">AO FINALIZAR O CARD: TIPO E MOTIVO</h1>
+
+    <p>Todo card finalizado precisa ter:</p>
+    <ul>
+      <li><strong>Tipo:</strong> SUCESSO ou SEM SUCESSO</li>
+      <li><strong>Motivo:</strong> uma das opções disponíveis</li>
+      <li><strong>Descrição:</strong> opcional, caso seja necessário explicar melhor o motivo</li>
+    </ul>
+
+    <h2 class="sub">Onde encontrar</h2>
+    <p>Na conversa do paciente, clique na seta ao lado do botão verde ENVIAR.</p>
+    <p>No menu, selecione:</p>
+    <div class="box"><p><strong>FINALIZAR OPORTUNIDADE</strong></p></div>
+
+    <h2 class="sub">No modal:</h2>
+
+    <div class="row2">
+      <div>
+        <h3 class="sub">1. Como deseja finalizar esta oportunidade?</h3>
+        <p>Escolha:</p>
+        <ul>
+          <li><strong>SUCESSO</strong></li>
+          <li><strong>SEM SUCESSO</strong></li>
+        </ul>
+
+        <h3 class="sub">2. Qual o motivo?</h3>
+        <p>O sistema mostrará os motivos correspondentes ao tipo escolhido.</p>
+      </div>
+      <div>
+        <h3 class="sub">SUCESSO</h3>
+        <ul>
+          <li>Agendamento Novo</li>
+          <li>Agendamento Antigo</li>
+          <li>Agendamento Remarcado</li>
+          <li>Agendamento Cancelado</li>
+          <li>Informações sobre Tratamentos</li>
+          <li>Outros</li>
+        </ul>
+
+        <h3 class="sub">SEM SUCESSO</h3>
+        <ul>
+          <li>Sem Resposta</li>
+          <li>Não Reagendou</li>
+          <li>Outros</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>14</div>
+  </div>
+</section>
+
+<!-- ================== 4.3 Descrição e configurações ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">4. Rotina e finalização</div>
+    <h1 class="title small">FINALIZAÇÃO — DESCRIÇÃO E CONFIGURAÇÕES</h1>
+
+    <h2 class="sub">3. Descreva melhor o motivo</h2>
+    <p>Campo opcional para acrescentar alguma informação relevante.</p>
+
+    <h2 class="sub">4. Configurações</h2>
+    <p>Mantenha:</p>
+    <div class="box strong">
+      <p>"Direcionar próximo atendimento para Agente de IA OVYVA" marcado.</p>
+    </div>
+    <p>Mantenha:</p>
+    <div class="box warn">
+      <p>"Encaminhar conversa para outro funil de oportunidade" desmarcado.</p>
+    </div>
+    <p>Depois, clique em:</p>
+    <div class="box"><p><strong>SALVAR</strong></p></div>
+
+    <h2 class="sub" style="margin-top:6mm">POR QUE REGISTRAR O MOTIVO?</h2>
+    <p>O motivo permite transformar os atendimentos em informação útil para a clínica.</p>
+    <p>Em vez de depender da memória da equipe, o CRM passa a mostrar:</p>
+    <ul>
+      <li>quantas oportunidades foram convertidas;</li>
+      <li>quantas foram perdidas; atendimento real e a equipe consegue usar essas informações para organizar o trabalho, acompanhar as oportunidades e em que situações elas foram perdidas;</li>
+      <li>quantos pacientes chegaram efetivamente ao atendimento.</li>
+    </ul>
+    <p style="margin-top:3mm">Quanto mais atualizado o funil, mais confiáveis são esses dados.</p>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>15</div>
+  </div>
+</section>
+
+<!-- ================== SEÇÃO 5 · DIVISOR ================== -->
+<section class="page divider">
+  <div class="grid">
+    <div class="c1"></div><div class="c2"></div><div class="c3"></div><div class="c4"></div><div class="c5"></div><div class="c6"></div>
+  </div>
+  <div class="num-box">5</div>
+  <div class="title-box">RESUMO<br>E REGRA<br>PRINCIPAL</div>
+</section>
+
+<!-- ================== 5.1 Resumo de mesa ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">5. Resumo e regra principal</div>
+    <h1 class="title">RESUMO DE MESA</h1>
+
+    <table class="resume">
+      <thead>
+        <tr>
+          <th>O que aconteceu</th>
+          <th>Mover para</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Respondeu à primeira mensagem</td><td class="action">CONTATO</td></tr>
+        <tr><td>Marcou a consulta</td><td class="action">AGENDADO</td></tr>
+        <tr><td>Paciente confirmou</td><td class="action">CONFIRMADO</td></tr>
+        <tr><td>Paciente foi atendido</td><td class="action">COMPARECEU → finalizar</td></tr>
+        <tr><td>Paciente não compareceu</td><td class="action">NÃO COMPARECEU → finalizar</td></tr>
+        <tr><td>Paciente desistiu ou deixou de responder</td><td class="action">Finalizar → SEM SUCESSO</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>16</div>
+  </div>
+</section>
+
+<!-- ================== 5.2 Regra mais importante ================== -->
+<section class="page">
+  <div class="stripe"><div class="s s1"></div><div class="s s2"></div><div class="s s3"></div><div class="s s4"></div><div class="s s5"></div></div>
+  <div class="content">
+    <div class="kicker">5. Resumo e regra principal</div>
+    <h1 class="title">A REGRA MAIS IMPORTANTE</h1>
+
+    <div class="box strong">
+      <p>O CRM registra a jornada do paciente conforme ela acontece.</p>
+    </div>
+
+    <p>A coluna não serve para avaliar se a atendente trabalhou ou não.</p>
+    <p>Ela serve para mostrar:</p>
+
+    <div class="box">
+      <p><strong>Em que etapa desse atendimento o paciente está agora?</strong></p>
+    </div>
+
+    <p>Por isso, sempre que a situação mudar, mova o card para a etapa correspondente.</p>
+
+    <div class="box strong" style="margin-top:6mm">
+      <p>Assim, o CRM passa a refletir o atendimento real e a equipe consegue usar essas informações para organizar o trabalho, acompanhar as oportunidades e medir os resultados.</p>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="brand"><span class="mark"></span><b>ClintIA</b> · Uni Medic · Funil Comercial</div>
+    <div>17</div>
+  </div>
+</section>
+
+<!-- ================== CONTRA-CAPA ================== -->
+<section class="page backcover">
+  <div class="card">
+    <div class="tag">Documento</div>
+    <div class="rule"></div>
+    <h2>Uni Medic · Funil Comercial</h2>
+    <p>Guia de uso do CRM Verdesk<br>Aplicação da identidade visual ClintIA</p>
+    <div class="rule"></div>
+    <p style="font-size:9pt;color:#94a3b8;letter-spacing:.14em;text-transform:uppercase;margin-top:4mm">Versão 1.0 · Setembro de 2026</p>
+  </div>
+</section>
+
+</body>
+</html>
